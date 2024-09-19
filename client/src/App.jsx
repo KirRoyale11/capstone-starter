@@ -4,6 +4,8 @@ import Users from "./pages/Users";
 import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Login";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -65,7 +67,7 @@ function App() {
         {auth.id ? (
           <Link to="/createReview">Create Review</Link>
         ) : (
-          <Link to="/">Register/Login</Link>
+          <Link to="/login">Register/Login</Link>
         )}
       </nav>
       {auth.id && <button onClick={logout}>Logout {auth.username}</button>}
@@ -88,6 +90,9 @@ function App() {
         />
         <Route path="/users" element={<Users users={users} />} />
         {!!auth.id && <Route path="/createReview" element={<CreateReview />} />}
+
+        <Route path="/login" element={<Login />} />
+        {!auth.id && <Route path="/register" element={<Register />} />}
       </Routes>
     </>
   );
