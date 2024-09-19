@@ -14,8 +14,8 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
       </p>
       {!auth.id ? (
         <>
-          <AuthForm authAction={authAction} mode="login" />
-          <AuthForm authAction={authAction} mode="register" />
+          {/* <AuthForm authAction={authAction} mode="login" /> */}
+          {/* <AuthForm authAction={authAction} mode="register" /> */}
         </>
       ) : null}
     </div>
