@@ -1,12 +1,12 @@
 import React from "react";
 import AuthForm from "../components/AuthForm/AuthForm";
 
-function Register() {
+function Register({ auth, authAction }) {
   return (
     <div>
       <h2>Register Here</h2>
-      console.log("hi from register");
-      {/* <AuthForm authAction={authAction} mode="register" /> */}
+
+      <AuthForm authAction={authAction} mode="register" />
     </div>
   );
 }

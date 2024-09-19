@@ -5,7 +5,7 @@ import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
-import Register from "./pages/Login";
+import Register from "./pages/Register";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -92,7 +92,7 @@ function App() {
         {!!auth.id && <Route path="/createReview" element={<CreateReview />} />}
 
         <Route path="/login" element={<Login />} />
-        {!auth.id && <Route path="/register" element={<Register />} />}
+        <Route path="/register" element={<Register />} />
       </Routes>
     </>
   );
