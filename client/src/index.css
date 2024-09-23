@@ -1,6 +1,7 @@
 body {
   font-family: verdana;
-  /* background */
+  background-color: tan;
+  color: aqua;
 }
 form {
   display: flex;
@@ -14,6 +15,8 @@ form > * {
 nav {
   display: flex;
   justify-content: space-around;
+  border-top: solid 2px tan;
+  border-bottom: solid 2px tan;
 }
 
 .error {
