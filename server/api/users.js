@@ -3,9 +3,9 @@ const router = express.Router();
 
 const { fetchUsers } = require("../db");
 
-router.get("/users", async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
-    res.send(await fetchUsers(data));
+    res.send(await fetchUsers());
     // console.log(users);
   } catch (ex) {
     next(ex);
