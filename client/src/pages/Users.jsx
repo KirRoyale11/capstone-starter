@@ -26,7 +26,15 @@ const Users = ({ users }) => {
     };
     fetchUsers();
   }, []);
-  return <h1>User List {usersData.length}</h1>;
+  return (
+    <>
+      <h1>User List {usersData.length}</h1>
+      <div className="user-list">
+        {usersData?.map((user) => {
+          return <div key={user.id}>Name: {user.username}</div>;
+        })}
+      </div>
+    </>
+  );
 };
-
 export default Users;
