@@ -34,4 +34,11 @@ const createBusiness = async ({ busName, category, description, busImage }) => {
     console.log(err);
   }
 };
-module.exports = { createBusiness };
+
+const fetchBusinesses = async () => {
+  const SQL = `SELECT * FROM businesses;`;
+  const response = await client.query(SQL);
+  return response.rows;
+};
+
+module.exports = { createBusiness, fetchBusinesses };

@@ -15,7 +15,7 @@ const Businesses = ({ businesses }) => {
         }
         const data = await response.json();
         console.log(data);
-        setBusinessesData(data);
+        setBusinessData(data);
         setLoading(false);
       } catch (err) {
         setError(err.message);
@@ -29,7 +29,7 @@ const Businesses = ({ businesses }) => {
       <h1>Business List {businesses.length}</h1>
       <div className="business-list">
         {businessData?.map((business) => {
-          return <div key={business.id}> {business.busName} </div>;
+          return <div key={business.id}> Name:{business.busname} </div>;
         })}
       </div>
     </div>
