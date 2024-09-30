@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users";
 import Businesses from "./pages/Businesses";
+// import { businessData } from "./pages/Businesses;";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -12,6 +13,7 @@ function App() {
   const [users, setUsers] = useState([]);
   const [businesses, setBusinesses] = useState([]);
   const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState([]);
 
   useEffect(() => {
     attemptLoginWithToken();
@@ -56,6 +58,46 @@ function App() {
     window.localStorage.removeItem("token");
     setAuth({});
   };
+
+  useEffect(() => {
+    const fetchBusinesses = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/businesses`);
+        console.log(response);
+        if (!response.ok) {
+          throw new Error("Failed to fetch businesses");
+        }
+        const data = await response.json();
+        console.log(data);
+        setBusinesses(data);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+      }
+    };
+    fetchBusinesses();
+  }, []);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/users`);
+        console.log(response);
+        if (!response.ok) {
+          throw new Error("Failed to fetch users");
+        }
+        const data = await response.json();
+        console.log(data);
+        setUsers(data);
+        setLoading(false);
+      } catch (err) {
+        console.log(err);
+        setLoading(false);
+      }
+    };
+    fetchUsers();
+  }, []);
 
   return (
     <>

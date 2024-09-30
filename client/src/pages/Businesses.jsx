@@ -1,39 +1,21 @@
 import React, { useEffect, useState } from "react";
+// import { fetchBusinesses } from "../../../server/db";
 
-const Businesses = ({ businesses }) => {
-  const [businessData, setBusinessData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+function Businesses({ businesses }) {
+  // const [businessData, setBusinessData] = useState([]);
+  // const [loading, setLoading] = useState(true);
+  // const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchBusinesses = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/api/businesses`);
-        console.log(response);
-        if (!response.ok) {
-          throw new Error("Failed to fetch businesses");
-        }
-        const data = await response.json();
-        console.log(data);
-        setBusinessData(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    fetchBusinesses();
-  }, []);
   return (
     <div>
       <h1>Business List {businesses.length}</h1>
       <div className="business-list">
-        {businessData?.map((business) => {
+        {businesses?.map((business) => {
           return <div key={business.id}> Name:{business.busname} </div>;
         })}
       </div>
     </div>
   );
-};
+}
 
 export default Businesses;
