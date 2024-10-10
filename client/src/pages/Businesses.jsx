@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 // import { fetchBusinesses } from "../../../server/db";
 
 function Businesses({ businesses }) {
-  // const [businessData, setBusinessData] = useState([]);
-  // const [loading, setLoading] = useState(true);
-  // const [error, setError] = useState(null);
-
   return (
     <div>
       <h1>Business List {businesses.length}</h1>
       <div className="business-list">
         {businesses?.map((business) => {
-          return <div key={business.id}> Name:{business.busname} </div>;
+          return (
+            <div className="business-card" key={business.id}>
+              <h3>Name:{business.busname} </h3>
+              <img src={business.busimage} />
+              <p>Category: {business.category}</p>
+              <p>About us: {business.description}</p>
+            </div>
+          );
         })}
       </div>
     </div>

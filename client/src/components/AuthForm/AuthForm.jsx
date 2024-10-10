@@ -13,12 +13,13 @@ const AuthForm = ({ authAction, mode = "login" }) => {
       setError(ex.error);
     }
   };
+  // const RegForm = ()
   return (
     <form onSubmit={submit}>
       {!!error && <div className="error">{error}</div>}
       {mode === "register" && (
         <>
-          <input
+          {/* <input
             value={firstname}
             placeholder="First Name"
             onChange={(ev) => setFirstName(ev.target.value)}
@@ -27,7 +28,12 @@ const AuthForm = ({ authAction, mode = "login" }) => {
             value={lastname}
             placeholder="Last Name"
             onChange={(ev) => setLastName(ev.target.value)}
-          />
+          /> */}
+          {/* <input
+            value={username}
+            placeholder="Username"
+            onChange={(ev) => setUsername(ev.target.value)}
+          /> */}
         </>
       )}
       <input

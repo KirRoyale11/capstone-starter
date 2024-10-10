@@ -3,10 +3,12 @@ import AuthForm from "../components/AuthForm/AuthForm";
 
 function Register({ auth, authAction }) {
   return (
-    <div>
+    <div className="register-page">
       <h2>Register Here</h2>
 
-      <AuthForm authAction={authAction} mode="register" />
+      <>
+        <AuthForm authAction={authAction} mode="register" />
+      </>
     </div>
   );
 }

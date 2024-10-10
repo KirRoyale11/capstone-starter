@@ -7,6 +7,8 @@ import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Reviews from "./pages/Reviews";
+import CreateBusiness from "./pages/CreateBusiness";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -14,6 +16,7 @@ function App() {
   const [businesses, setBusinesses] = useState([]);
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     attemptLoginWithToken();
@@ -130,11 +133,29 @@ function App() {
           path="/businesses"
           element={<Businesses businesses={businesses} />}
         />
-        <Route path="/users" element={<Users users={users} />} />
-        {!!auth.id && <Route path="/createReview" element={<CreateReview />} />}
 
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="/users" element={<Users users={users} />} />
+        {!!auth.id && (
+          <Route
+            path="/createReview"
+            element={
+              <CreateReview
+                businesses={businesses}
+                reviews={reviews}
+                auth={auth}
+              />
+            }
+          />
+        )}
+
+        <Route
+          path="/login"
+          element={<Login authAction={authAction} auth={auth} />}
+        />
+        <Route
+          path="/register"
+          element={<Register authAction={authAction} auth={auth} />}
+        />
       </Routes>
     </>
   );

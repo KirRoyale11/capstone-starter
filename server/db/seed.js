@@ -1,12 +1,17 @@
 const { client } = require("./client");
 
-const { createUser, createBusiness, fetchUsers } = require("./index.js");
+const {
+  createUser,
+  fetchUsers,
+  createBusiness,
+  fetchBusinesses,
+} = require("./index.js");
 
 const dropTables = async () => {
   try {
     await client.query(`DROP TABLE IF EXISTS users CASCADE`);
     await client.query(`DROP TABLE IF EXISTS businesses CASCADE`);
-    await client.query(`DROP TABLE IF EXISTS ratings CASCADE`);
+    await client.query(`DROP TABLE IF EXISTS reviews CASCADE`);
   } catch (err) {
     console.log(err);
   }
@@ -32,15 +37,15 @@ const createTables = async () => {
     busImage VARCHAR(255) DEFAULT 
       'https://static.wixstatic.com/media/40bb67_32a45a704190429eb53a3f3cd1336cb8~mv2.jpg/v1/fill/w_528,h_420,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/40bb67_32a45a704190429eb53a3f3cd1336cb8~mv2.jpg'
   )`);
-  // RATINGS TABLE TEMPLATE
-  // await client.query(`
-  //   CREATE TABLE reviews(
-  //   id SERIAL PRIMARY KEY,
-  //   busid INTEGER REFERENCES businesses(id),
-  //   userid INTEGER REFERENCES user(id),
-  //   star TINYINT(5),
-  //   text VARCHAR(1023)
-  // )`);
+  // REVIEWS TABLE TEMPLATE
+  await client.query(`
+    CREATE TABLE reviews(
+    id SERIAL PRIMARY KEY,
+    stars INTEGER,
+    input VARCHAR(1023),
+    userid UUID REFERENCES users(id),
+    busid INTEGER REFERENCES businesses(id)
+  )`);
 };
 
 const insertUsers = async () => {
@@ -57,6 +62,16 @@ const insertBusinesses = async () => {
   try {
     for (const business of businesses) {
       await createBusiness(business);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const insertReviews = async () => {
+  try {
+    for (const review of reviews) {
+      await CreateReview(business);
     }
   } catch (error) {
     console.log(error);
