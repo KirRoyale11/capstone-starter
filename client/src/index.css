@@ -19,6 +19,17 @@ nav {
   border-bottom: solid 2px tan;
 }
 
+.review-container {
+  display: grid;
+  grid-template-rows: 3;
+}
+.single-review {
+  display: flex-column;
+
+  justify-content: center;
+  border: 1px solid black;
+}
+
 .error {
   background-color: tomato;
   padding: 0.5rem;

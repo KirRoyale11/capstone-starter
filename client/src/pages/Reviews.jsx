@@ -28,13 +28,16 @@ function Reviews({ reviews }) {
   console.log(reviewData);
 
   return (
-    <div>
+    <div className="review-container">
       <h2>Reviews:</h2>
-      <div className="review-list" key={reviewData.id}>
+      <div className="review-list" key={reviews.id}>
         {reviewData?.map((review) => {
           return (
             <div className="single-review">
-              <h3>{review.busid}</h3>
+              <h3>Name:</h3>
+              <h3>Rating: {review.stars}</h3>
+              <h5>User: {review.username}</h5>
+              <p>{review.input}</p>
             </div>
           );
         })}

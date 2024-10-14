@@ -1,11 +1,11 @@
 const { client } = require("./client");
 
-const createReview = async ({ stars, input, userid, busid }) => {
+const createReview = async ({ busname, stars, input, userid, busid }) => {
   try {
-    const SQL = `INSERT INTO reviews(stars, input, userid, busid) VALUES($1, $2, $3, $4) RETURNING *`;
+    const SQL = `INSERT INTO reviews(busname, stars, input, userid, busid) VALUES($1, $2, $3, $4) RETURNING *`;
     const {
       rows: [result],
-    } = await client.query(SQL, [stars, input, userid, busid]);
+    } = await client.query(SQL, [busname, stars, input, userid, busid]);
     return result;
   } catch (error) {
     throw error;
