@@ -6,7 +6,7 @@ import axios from "axios";
 function Businesses({ businesses }) {
   return (
     <div>
-      <h1>Business List {businesses.length}</h1>
+      <h2>Business List {businesses.length}</h2>
       <div className="business-list">
         {businesses?.map((business) => {
           return (

@@ -109,6 +109,7 @@ function App() {
         <Link to="/">Home</Link>
         <Link to="/businesses">Businesses ({businesses.length})</Link>
         <Link to="/users">Users ({users.length})</Link>
+        <Link to="/reviews">Reviews ({reviews.length})</Link>
         {auth.id ? (
           <Link to="/createReview">Create Review</Link>
         ) : (
@@ -133,6 +134,8 @@ function App() {
           path="/businesses"
           element={<Businesses businesses={businesses} />}
         />
+
+        <Route path="/reviews" element={<Reviews reviews={reviews} />} />
 
         <Route path="/users" element={<Users users={users} />} />
         {!!auth.id && (
