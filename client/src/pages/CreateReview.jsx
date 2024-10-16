@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-function CreateReview({ businesses, auth }) {
+function CreateReview({ businesses, auth, users }) {
   const [input, setInput] = useState("");
   const [stars, setStars] = useState(1);
   const [businessReview, setBusinessReview] = useState(businesses[0].id); // Default to the first business

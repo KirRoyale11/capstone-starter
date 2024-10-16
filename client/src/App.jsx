@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Reviews from "./pages/Reviews";
 import CreateBusiness from "./pages/CreateBusiness";
+import SingleBusiness from "./pages/SingleBusiness";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -62,6 +63,22 @@ function App() {
     setAuth({});
   };
 
+  // const getBusiness = useCallback(async () => {
+  //   try {
+  //     const response = await fetch(`http://localhost:3000/api/businesses`)
+  //     if (!response.ok) {
+  //       throw new Error('failed to get businesses');
+  //     }
+  //     const data = await response.json();
+  //     console.log(data);
+  //     setBusinesses(data);
+  //     setLoading(false);
+  //   }catch (err) {
+  //     setError(err.message);
+  //     setLoading(false);
+  //   }
+  // },[]);
+
   useEffect(() => {
     const fetchBusinesses = async () => {
       try {
@@ -108,6 +125,7 @@ function App() {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/businesses">Businesses ({businesses.length})</Link>
+
         <Link to="/users">Users ({users.length})</Link>
         <Link to="/reviews">Reviews ({reviews.length})</Link>
         {auth.id ? (
@@ -115,6 +133,8 @@ function App() {
         ) : (
           <Link to="/login">Register/Login</Link>
         )}
+        {/* "Create business" as protected route  */}
+        {auth.id ? <Link to="/createbusiness">Add a Business</Link> : null}
       </nav>
       {auth.id && <button onClick={logout}>Logout {auth.username}</button>}
       <Routes>
@@ -150,7 +170,15 @@ function App() {
             }
           />
         )}
+        <Route
+          path="/createbusiness"
+          element={<CreateBusiness businesses={businesses} auth={auth} />}
+        />
 
+        <Route
+          path="/businesses/:id"
+          element={<SingleBusiness businesses={businesses} reviews={reviews} />}
+        />
         <Route
           path="/login"
           element={<Login authAction={authAction} auth={auth} />}

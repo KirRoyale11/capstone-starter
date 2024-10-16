@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 // import { fetchBusinesses } from "../../../server/db";
 
 function Businesses({ businesses }) {
+  const navigate = useNavigate();
+
   return (
     <div>
       <h2>Business List {businesses.length}</h2>
@@ -15,6 +17,10 @@ function Businesses({ businesses }) {
               <img src={business.busimage} />
               <p>Category: {business.category}</p>
               <p>About us: {business.description}</p>
+              <br></br>
+              <button onClick={() => navigate(`businesses/${business.id}`)}>
+                See Details
+              </button>{" "}
             </div>
           );
         })}
