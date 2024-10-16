@@ -55,4 +55,4 @@ const fetchSingleBusinesses = async (id) => {
   }
 };
 
-module.exports = { createBusiness, fetchBusinesses };
+module.exports = { createBusiness, fetchBusinesses, fetchSingleBusinesses };

@@ -18,7 +18,7 @@ function Businesses({ businesses }) {
               <p>Category: {business.category}</p>
               <p>About us: {business.description}</p>
               <br></br>
-              <button onClick={() => navigate(`businesses/${business.id}`)}>
+              <button onClick={() => navigate(`/businesses/${business.id}`)}>
                 See Details
               </button>{" "}
             </div>

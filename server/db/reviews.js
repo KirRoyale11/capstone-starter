@@ -2,7 +2,7 @@ const { client } = require("./client");
 
 const createReview = async ({ busname, stars, input, userid, busid }) => {
   try {
-    const SQL = `INSERT INTO reviews(busname, stars, input, userid, busid) VALUES($1, $2, $3, $4) RETURNING *`;
+    const SQL = `INSERT INTO reviews(busname, stars, input, userid, busid) VALUES($1, $2, $3, $4, $5) RETURNING *`;
     const {
       rows: [result],
     } = await client.query(SQL, [busname, stars, input, userid, busid]);
@@ -22,10 +22,10 @@ const fetchReviews = async () => {
 
 const getBusinessReviews = async (businessesId) => {
   try {
-    const SQL = `SELECT reviews.id, businesses.busname, businesses.description, businesses.busimage, 
-        reviews JOIN businesses ON reviews.busid = businesses.id AND userid = $1`;
+    const SQL = `SELECT reviews.id, reviews.input, reviews.stars, businesses.busname, businesses.description, businesses.busimage FROM 
+        reviews JOIN businesses ON reviews.busid = businesses.id = $1`;
 
-    const { rows } = await client.query(SQL, []);
+    const { rows } = await client.query(SQL, [businessesId]);
     if (!rows) return;
     console.log(rows);
     return rows;
@@ -35,5 +35,7 @@ const getBusinessReviews = async (businessesId) => {
     }
   }
 };
+
+// getBusinessReviews(1);
 
 module.exports = { createReview, fetchReviews, getBusinessReviews };

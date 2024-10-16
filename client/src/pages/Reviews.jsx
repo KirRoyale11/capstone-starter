@@ -34,9 +34,9 @@ function Reviews({ reviews }) {
         {reviewData?.map((review) => {
           return (
             <div className="single-review">
-              <h3>Name:</h3>
+              <h3>Name: {review.busname}</h3> */Check join params/*
               <h3>Rating: {review.stars}</h3>
-              <h5>User: {review.username}</h5>
+              <h5>User: {review.username}</h5> */ Check join params/*
               <p>{review.input}</p>
             </div>
           );
