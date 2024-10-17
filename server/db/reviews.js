@@ -22,8 +22,8 @@ const fetchReviews = async () => {
 
 const getBusinessReviews = async (businessesId) => {
   try {
-    const SQL = `SELECT reviews.id, reviews.input, reviews.stars, businesses.busname, businesses.description, businesses.busimage FROM 
-        reviews JOIN businesses ON reviews.busid = businesses.id = $1`;
+    const SQL = `SELECT reviews.id, reviews.input, reviews.userid, reviews.stars, businesses.busname, businesses.description, businesses.busimage FROM 
+        reviews JOIN businesses ON reviews.busid = businesses.id WHERE businesses.id = $1`;
 
     const { rows } = await client.query(SQL, [businessesId]);
     if (!rows) return;
@@ -36,6 +36,6 @@ const getBusinessReviews = async (businessesId) => {
   }
 };
 
-// getBusinessReviews(1);
+getBusinessReviews(1);
 
 module.exports = { createReview, fetchReviews, getBusinessReviews };

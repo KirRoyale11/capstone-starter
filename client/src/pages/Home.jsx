@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import AuthForm from "../components/AuthForm/AuthForm";
 import Businesses from "./Businesses";
 
@@ -6,11 +7,11 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
     <div>
       <h1>Home</h1>
       <p>
-        View our {businesses.length} Businesses
+        <Link to="/businesses">View our {businesses.length} Businesses</Link>
         <br />
-        Display some interesting information about our {users.length} Users
+        <Link to="/users">Hear more from our {users.length} Users</Link>
         <br />
-        Display some interesting information about our {reviews.length} Reviews
+        <Link to="/reviews">See the latest of {reviews.length} Reviews</Link>
       </p>
       {!auth.id ? (
         <>

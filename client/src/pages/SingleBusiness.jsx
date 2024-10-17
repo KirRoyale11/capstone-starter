@@ -18,11 +18,12 @@ function SingleBusiness() {
   return (
     <div>
       <h2>{business?.busname}</h2>
-      <br></br>
+      <br />
       <img src={business?.busimage} />
-      <br></br>
+      <br />
       <p>{business?.description}</p>
-      <br></br>
+      <br />
+
       <h3>See reviews for {business?.busname}</h3>
     </div>
   );
