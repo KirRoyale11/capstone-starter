@@ -14,20 +14,41 @@ form > * {
 
 nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   border-top: solid 2px tan;
   border-bottom: solid 2px tan;
 }
 
+a:visited {
+  color: navy;
+}
+
+.business-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.business-card {
+  display: flex-column;
+  align-items: center;
+  max-width: 45%;
+}
+
+.business-card > img {
+  max-width: 30%;
+}
+
 .review-container {
-  display: grid;
-  grid-template-rows: 3;
+  display: grid-wrap;
+  grid-template-columns: 2;
 }
 .single-review {
   display: flex-column;
 
   justify-content: center;
-  border: 1px solid black;
+  border: 1px solid navy;
+  margin: 10px;
+  max-width: 45%;
 }
 
 .error {

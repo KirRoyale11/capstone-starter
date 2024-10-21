@@ -9,7 +9,7 @@ function Businesses({ businesses }) {
   return (
     <div>
       <h2>Business List {businesses.length}</h2>
-      <div className="business-list">
+      <div className="business-container">
         {businesses?.map((business) => {
           return (
             <div className="business-card" key={business.id}>

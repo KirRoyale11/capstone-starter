@@ -27,11 +27,12 @@ router.post("/", async (req, res, next) => {
   }
 });
 
-router.get("/businesses/:businessId", async (req, res, next) => {
+router.get("/businesses/:id", async (req, res, next) => {
   console.log("Getting business reviews...");
-  const { businessId } = req.params;
+  const { id } = req.params;
+  console.log("BID", id);
   try {
-    const reviews = await getBusinessReviews(businessId);
+    const reviews = await getBusinessReviews(id);
     const users = await fetchUsers();
     console.log(users);
     console.log(reviews);
@@ -40,8 +41,18 @@ router.get("/businesses/:businessId", async (req, res, next) => {
       return { ...review, username: reviewsResult.username };
     });
   } catch (error) {
-    next(err);
+    next(error);
   }
+  // getBusinessReviews(3);
 });
+
+// router.get("/business/:businessId", async (req, res, next) => {
+//   let businessId = req.params.businessId;
+//   try {
+//     res.send(await fetchSingleBusinessReviews(businessId));
+//   } catch (ex) {
+//     next(ex);
+//   }
+// });
 
 module.exports = router;

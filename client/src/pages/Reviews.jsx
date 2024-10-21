@@ -3,37 +3,17 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Reviews({ reviews }) {
-  const [reviewData, setReviewData] = useState([]);
+  // const [reviewData, setReviewData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const getReviews = async () => {
-      try {
-        const response = await fetch(`http://localhost:3000/api/reviews/`);
-        if (!response.ok) {
-          throw new Error("Sorry... failed to get reviews");
-        }
-        const data = await response.json();
-        // console.log(data);
-        setReviewData(data);
-        setLoading(false);
-      } catch (err) {
-        setError(err.message);
-        setLoading(false);
-      }
-    };
-    getReviews();
-  }, []);
-  console.log(reviewData);
 
   return (
     <div className="review-container">
       <h2>Reviews:</h2>
-      <div className="review-list" key={reviews.id}>
-        {reviewData?.map((review) => {
+      <div className="review-list">
+        {reviews?.map((review) => {
           return (
-            <div className="single-review">
+            <div className="single-review" key={reviews.id}>
               <h3>Name: {review.busname}</h3> */Check join params/*
               <h3>Rating: {review.stars}</h3>
               <h5>User: {review.username}</h5> */ Check join params/*
@@ -42,9 +22,14 @@ function Reviews({ reviews }) {
           );
         })}
       </div>
-      ;
     </div>
   );
 }
+
+// -ping businesses enpoint for array of businesses
+// -call promise.all on businesses.map -save result in variable and log it out
+// -axios call to endpoint on businesses.map id
+// -flatten promise.all variable into single array
+// -display!
 
 export default Reviews;

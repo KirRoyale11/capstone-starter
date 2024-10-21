@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { Link, Route, Routes } from "react-router-dom";
 import Users from "./pages/Users";
 import Businesses from "./pages/Businesses";
-// import { businessData } from "./pages/Businesses;";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -18,6 +17,7 @@ function App() {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState([]);
   const [error, setError] = useState(null);
+  const [businessReviewsInfo, setBusinessReviewsInfo] = useState([]);
 
   useEffect(() => {
     attemptLoginWithToken();
@@ -63,32 +63,16 @@ function App() {
     setAuth({});
   };
 
-  // const getBusiness = useCallback(async () => {
-  //   try {
-  //     const response = await fetch(`http://localhost:3000/api/businesses`)
-  //     if (!response.ok) {
-  //       throw new Error('failed to get businesses');
-  //     }
-  //     const data = await response.json();
-  //     console.log(data);
-  //     setBusinesses(data);
-  //     setLoading(false);
-  //   }catch (err) {
-  //     setError(err.message);
-  //     setLoading(false);
-  //   }
-  // },[]);
-
   useEffect(() => {
     const fetchBusinesses = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/businesses`);
-        console.log(response);
+
         if (!response.ok) {
           throw new Error("Failed to fetch businesses");
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setBusinesses(data);
         setLoading(false);
       } catch (err) {
@@ -103,12 +87,12 @@ function App() {
     const fetchUsers = async () => {
       try {
         const response = await fetch(`http://localhost:3000/api/users`);
-        console.log(response);
+
         if (!response.ok) {
           throw new Error("Failed to fetch users");
         }
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setUsers(data);
         setLoading(false);
       } catch (err) {
@@ -119,10 +103,51 @@ function App() {
     fetchUsers();
   }, []);
 
+  useEffect(() => {
+    const getReviews = async () => {
+      try {
+        const response = await fetch(`http://localhost:3000/api/reviews/`);
+        if (!response.ok) {
+          throw new Error("Sorry... failed to get reviews");
+        }
+        const data = await response.json();
+        // console.log(data);
+        setReviews(data);
+        setLoading(false);
+      } catch (err) {
+        setError(err.message);
+        setLoading(false);
+      }
+    };
+    getReviews();
+  }, []);
+  // console.log(reviews);
+
+  // useEffect(() => {
+  //   const getBusinessReviewsInfo = async (businessId) => {
+  //     try {
+  //       const response = await fetch(
+  //         `http://localhost:3000/api/reviews/businesses/${businessId}`
+  //       );
+  //       if (!response.ok) {
+  //         throw new Error("Sorry... failed to get reviews");
+  //       }
+  //       const data = await response.json();
+  //       // console.log(data);
+  //       setBusinessReviewsInfo(data);
+  //       setLoading(false);
+  //     } catch (err) {
+  //       setError(err.message);
+  //       setLoading(false);
+  //     }
+  //   };
+  //   getBusinessReviewsInfo();
+  // }, []);
+
   return (
     <>
-      <h1>Acme Business Reviews</h1>
-      <nav>
+      <h1>DoubleCheck Reviews</h1>
+      <nav className="nav-bar">
         <Link to="/">Home</Link>
         <Link to="/businesses">Businesses ({businesses.length})</Link>
 
@@ -133,7 +158,6 @@ function App() {
         ) : (
           <Link to="/login">Register/Login</Link>
         )}
-        {/* "Create business" as protected route  */}
         {auth.id ? <Link to="/createbusiness">Add a Business</Link> : null}
       </nav>
       {auth.id && <button onClick={logout}>Logout {auth.username}</button>}

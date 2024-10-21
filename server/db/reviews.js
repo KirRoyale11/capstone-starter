@@ -21,11 +21,12 @@ const fetchReviews = async () => {
 };
 
 const getBusinessReviews = async (businessesId) => {
+  console.log(businessesId);
   try {
-    const SQL = `SELECT reviews.id, reviews.input, reviews.userid, reviews.stars, businesses.busname, businesses.description, businesses.busimage FROM 
+    const SQL = `SELECT reviews.id, reviews.input, reviews.userid, reviews.stars, businesses.busName, businesses.description, businesses.busImage FROM
         reviews JOIN businesses ON reviews.busid = businesses.id WHERE businesses.id = $1`;
 
-    const { rows } = await client.query(SQL, [businessesId]);
+    const { rows } = await client.query(SQL, [1]);
     if (!rows) return;
     console.log(rows);
     return rows;
@@ -36,6 +37,12 @@ const getBusinessReviews = async (businessesId) => {
   }
 };
 
-getBusinessReviews(1);
+getBusinessReviews();
+
+// const fetchSingleBusinessReviews = async (id) => {
+//   const SQL = `SELECT * FROM reviews WHERE businessID=$1;`;
+//   const response = await client.query(SQL, [id]);
+//   return response.rows;
+// };
 
 module.exports = { createReview, fetchReviews, getBusinessReviews };
