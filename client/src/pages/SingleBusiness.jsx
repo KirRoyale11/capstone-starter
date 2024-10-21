@@ -80,7 +80,7 @@ function SingleBusiness() {
         const reviewsResponse = await fetch(
           `http://localhost:3000/api/reviews/businesses/${id}`
         );
-        console.log(await businessResponse.json());
+        // console.log(await businessResponse.json());
         if (!businessResponse.ok) {
           throw new Error("Failed to fetch business");
         }
@@ -90,7 +90,7 @@ function SingleBusiness() {
         console.log(reviewData);
         console.log(businessData);
         setReviews(reviewData);
-        setBusiness(businessDataData.first);
+        setBusiness(businessData);
       } catch (err) {
         console.log(err);
         setError(err.message);
@@ -98,21 +98,22 @@ function SingleBusiness() {
     };
     fetchBusiness();
   }, []);
-  // console.log("single businesses", business);
-  // console.log("reviews", reviews);
+  console.log("single businesses", business);
+  console.log("reviews", reviews);
   console.log(id);
   return (
     <div>
-      <div className="business-card" key={business.id}>
-        <h2 className="business-name">Business: {business.busname} </h2>
-        <h2>About Us: {business.description} </h2>
-        <img src={business.busimage} alt={business.busname} />
+      <div className="business-card" key={business?.id}>
+        <h2 className="business-name">Business: {business?.busname} </h2>
+        <h2>About Us: {business?.description} </h2>
+        <img src={business?.busimage} alt={business?.busname} />
       </div>
       {reviews?.map(function (review) {
+        console.log(review.stars);
         return (
           <div className="business-reviews" key={review.id}>
-            <h2 className="reviews">Reviews: {review.review}</h2>
-            <h2 className="rating">rating: {review.rating}</h2>
+            <h2 className="reviews">Reviews: {review.input}</h2>
+            <h2 className="rating">rating: {review.stars}</h2>
           </div>
         );
       })}

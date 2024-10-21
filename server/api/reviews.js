@@ -40,6 +40,7 @@ router.get("/businesses/:id", async (req, res, next) => {
       const reviewsResult = users.find((user) => user.id === review.userid);
       return { ...review, username: reviewsResult.username };
     });
+    res.send(reviewsWithUsername);
   } catch (error) {
     next(error);
   }
