@@ -98,18 +98,18 @@ function SingleBusiness() {
     };
     fetchBusiness();
   }, []);
-  console.log("single businesses", business);
-  console.log("reviews", reviews);
+  // console.log("single businesses", business);
+  // console.log("reviews", reviews);
   console.log(id);
   return (
     <div>
       <div className="business-card" key={business?.id}>
+        <img src={business?.busimage} alt={business?.busname} />
         <h2 className="business-name">Business: {business?.busname} </h2>
         <h2>About Us: {business?.description} </h2>
-        <img src={business?.busimage} alt={business?.busname} />
       </div>
       {reviews?.map(function (review) {
-        console.log(review.stars);
+        // console.log(review.stars);
         return (
           <div className="business-reviews" key={review.id}>
             <h2 className="reviews">Reviews: {review.input}</h2>
