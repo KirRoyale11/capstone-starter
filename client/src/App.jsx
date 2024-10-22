@@ -9,6 +9,7 @@ import Register from "./pages/Register";
 import Reviews from "./pages/Reviews";
 import CreateBusiness from "./pages/CreateBusiness";
 import SingleBusiness from "./pages/SingleBusiness";
+import UserReviews from "./pages/UserReviews";
 
 function App() {
   const [auth, setAuth] = useState({});
@@ -194,6 +195,12 @@ function App() {
             }
           />
         )}
+
+        <Route
+          path="/users/:id"
+          element={<UserReviews users={users} reviews={reviews} />}
+        />
+
         <Route
           path="/createbusiness"
           element={<CreateBusiness businesses={businesses} auth={auth} />}

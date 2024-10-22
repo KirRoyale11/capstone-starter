@@ -6,6 +6,8 @@ const {
   createReview,
   getBusinessReviews,
   fetchUsers,
+  getUserReviews,
+  deleteReview,
 } = require("../db");
 
 router.get("/", async (req, res, next) => {
@@ -30,12 +32,12 @@ router.post("/", async (req, res, next) => {
 router.get("/businesses/:id", async (req, res, next) => {
   console.log("Getting business reviews...");
   const { id } = req.params;
-  console.log("BID", id);
+  // console.log("BID", id);
   try {
     const reviews = await getBusinessReviews(id);
     const users = await fetchUsers();
-    console.log(users);
-    console.log(reviews);
+    // console.log(users);
+    // console.log(reviews);
     const reviewsWithUsername = reviews.map((review) => {
       const reviewsResult = users.find((user) => user.id === review.userid);
       return { ...review, username: reviewsResult.username };
@@ -45,6 +47,26 @@ router.get("/businesses/:id", async (req, res, next) => {
     next(error);
   }
   // getBusinessReviews(3);
+});
+
+router.get("/users/:id", async (req, res, next) => {
+  console.log("getting user reviews");
+  const { id } = req.params;
+  try {
+    const reviews = await getUserReviews(id);
+
+    res.send(reviews);
+  } catch (err) {
+    next(err);
+  }
+});
+router.delete("/:id", async (req, res, next) => {
+  try {
+    const deletedReview = await deleteReview(req.params.id);
+    res.send("review deleted");
+  } catch (err) {
+    next(err);
+  }
 });
 
 // router.get("/business/:businessId", async (req, res, next) => {

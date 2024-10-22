@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import axios from "axios";
 
 function Reviews({ reviews }) {
-  // const [reviewData, setReviewData] = useState([]);
+  const [reviewData, setReviewData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -13,7 +13,7 @@ function Reviews({ reviews }) {
       <div className="review-list">
         {reviews?.map((review) => {
           return (
-            <div className="single-review" key={reviews.id}>
+            <div className="single-review" key={reviews?.id}>
               <h3>Name: {review.busname}</h3> */Check join params/*
               <h3>Rating: {review.stars}</h3>
               <h5>User: {review.username}</h5> */ Check join params/*
@@ -26,7 +26,7 @@ function Reviews({ reviews }) {
   );
 }
 
-// -ping businesses enpoint for array of businesses
+// -ping businesses endpoint for array of businesses
 // -call promise.all on businesses.map -save result in variable and log it out
 // -axios call to endpoint on businesses.map id
 // -flatten promise.all variable into single array
