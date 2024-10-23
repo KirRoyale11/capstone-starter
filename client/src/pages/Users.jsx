@@ -9,10 +9,10 @@ function Users({ users }) {
   const navigate = useNavigate();
   return (
     <div>
-      <h2>DoubleCheck has {users.length} users currently contributing</h2>
+      <h2>DoubleCheck has {users.length} users</h2>
       {users?.map(function (person) {
         return (
-          <div className="main-layout" key={person.id}>
+          <div className="main-user-layout" key={person.id}>
             <div className="user-card">Name: {person.username}</div>
             <button onClick={() => navigate(`/users/${person.id}`)}>
               See User Reviews

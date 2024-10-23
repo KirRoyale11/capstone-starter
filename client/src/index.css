@@ -44,6 +44,10 @@ nav {
   border-bottom: solid 2px tan;
 }
 
+a:hover {
+  color: cadetblue;
+}
+
 a:visited {
   color: navy;
 }
@@ -74,6 +78,12 @@ a:visited {
 
 .business-reviews-by-user {
   border: solid;
+}
+
+.main-user-layout {
+  /* border: solid 1px; */
+
+  margin: 10px;
 }
 
 .review-container {

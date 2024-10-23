@@ -8,7 +8,7 @@ function Businesses({ businesses }) {
 
   return (
     <div>
-      <h2>Business List {businesses.length}</h2>
+      <h2>Businesses ({businesses.length})</h2>
       <div className="business-container">
         {businesses?.map((business) => {
           return (
