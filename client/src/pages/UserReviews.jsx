@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-export default function UserReviews(auth) {
-  const { id } = useParams();
-  const [userReviewData, setUserReviewData] = useState(null);
 
-  console.log(id);
+export default function UserReviews({ auth }) {
+  const { id: userId } = useParams();
+  const [userReviewData, setUserReviewData] = useState(null);
+  const navigate = useNavigate();
+
   useEffect(() => {
-    axios(`http://localhost:3000/api/reviews/users/${id}`)
+    // const navigate = useNavigate();
+    axios(`http://localhost:3000/api/reviews/users/${userId}`)
       .then(async (response) => {
         const reviews = response.data;
         console.log(reviews);
@@ -15,19 +17,25 @@ export default function UserReviews(auth) {
       })
       .catch((err) => console.log("error fetching review data", err));
   }, []);
-  async function handleSubmit(id) {
-    axios
-      .delete(`http://localhost:3000/api/reviews/${id}`)
-      .then((response) => console.log(response))
-      .catch((err) => console.log("error deleting review", err));
+  async function handleSubmit(reviewId) {
+    console.log("Im here!");
+
+    if (userId !== auth.id) {
+      navigate("/notauthorized");
+    } else {
+      axios
+        .delete(`http://localhost:3000/api/reviews/${reviewId}`)
+        .then((response) => console.log(response))
+        .catch((err) => console.log("error deleting review", err));
+    }
   }
   return (
     <div>
       <h1>Hello!</h1>
-      <div className="main-layout">
+      <div className="user-review-layout">
         {userReviewData?.map(function (data) {
           return (
-            <div className="display-card" key={data.id}>
+            <div className="user-review-card" key={data.id}>
               Business: {data.busname}, {data.category}
               <br></br>
               {data.description}

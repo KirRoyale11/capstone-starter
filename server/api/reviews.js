@@ -32,7 +32,7 @@ router.post("/", async (req, res, next) => {
 router.get("/businesses/:id", async (req, res, next) => {
   console.log("Getting business reviews...");
   const { id } = req.params;
-  // console.log("BID", id);
+  console.log("BID", id);
   try {
     const reviews = await getBusinessReviews(id);
     const users = await fetchUsers();

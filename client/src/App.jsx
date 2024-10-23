@@ -5,6 +5,7 @@ import Businesses from "./pages/Businesses";
 import CreateReview from "./pages/CreateReview";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
+import NotAuth from "./pages/NotAuth";
 import Register from "./pages/Register";
 import Reviews from "./pages/Reviews";
 import CreateBusiness from "./pages/CreateBusiness";
@@ -153,7 +154,7 @@ function App() {
         <Link to="/businesses">Businesses ({businesses.length})</Link>
 
         <Link to="/users">Users ({users.length})</Link>
-        <Link to="/reviews">Reviews ({reviews.length})</Link>
+        {/* <Link to="/reviews">Reviews ({reviews.length})</Link> */}
         {auth.id ? (
           <Link to="/createReview">Create Review</Link>
         ) : (
@@ -161,7 +162,11 @@ function App() {
         )}
         {auth.id ? <Link to="/createbusiness">Add a Business</Link> : null}
       </nav>
-      {auth.id && <button onClick={logout}>Logout {auth.username}</button>}
+      {auth.id && (
+        <button className="logout-button" onClick={logout}>
+          Logout {auth.username}
+        </button>
+      )}
       <Routes>
         <Route
           path="/"
@@ -198,7 +203,7 @@ function App() {
 
         <Route
           path="/users/:id"
-          element={<UserReviews users={users} reviews={reviews} />}
+          element={<UserReviews users={users} reviews={reviews} auth={auth} />}
         />
 
         <Route
@@ -218,6 +223,7 @@ function App() {
           path="/register"
           element={<Register authAction={authAction} auth={auth} />}
         />
+        <Route path="/notauthorized" element={<NotAuth auth={auth} />} />
       </Routes>
     </>
   );

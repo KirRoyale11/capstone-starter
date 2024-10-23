@@ -63,12 +63,13 @@
 // export default SingleBusiness;
 
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 
 function SingleBusiness() {
   const [business, setBusiness] = useState({});
   const [error, setError] = useState("");
   const [reviews, setReviews] = useState([]);
+  const navigate = useNavigate();
 
   let { id } = useParams();
   useEffect(() => {
@@ -100,7 +101,7 @@ function SingleBusiness() {
   }, []);
   // console.log("single businesses", business);
   // console.log("reviews", reviews);
-  console.log(id);
+  // console.log(id);
   return (
     <div>
       <div className="business-card" key={business?.id}>
@@ -108,12 +109,18 @@ function SingleBusiness() {
         <h2 className="business-name">Business: {business?.busname} </h2>
         <h2>About Us: {business?.description} </h2>
       </div>
+      <h2 className="reviews">Reviews:</h2>
       {reviews?.map(function (review) {
-        // console.log(review.stars);
         return (
-          <div className="business-reviews" key={review.id}>
-            <h2 className="reviews">Reviews: {review.input}</h2>
-            <h2 className="rating">rating: {review.stars}</h2>
+          <div>
+            <div className="business-reviews-by-user" key={review.id}>
+              {/* <Link to="/reviews/user/:id"> */}
+              <h3>User: {review.username} </h3>
+              {/* </Link> */}
+              <h3 className="rating">Rating:</h3>
+              <p> {review.stars}</p>
+              <p>{review.input}</p>
+            </div>
           </div>
         );
       })}

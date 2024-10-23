@@ -70,6 +70,7 @@ function CreateReview({ businesses, auth, users }) {
             />
           </label>
           <br />
+
           <button type="submit">Submit Review</button>
         </form>
       </div>
