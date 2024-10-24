@@ -30,10 +30,13 @@ const Home = ({ auth, authAction, logout, businesses, users, reviews }) => {
         <br />
       </div>
       <div className="home-item">
-        <img
-          className="home-img"
-          src="https://imagedelivery.net/ZMsc4Rh1AHFp0qz_tfBn9w/png_13--uTk3hwTDvKbv-9uem/public?id=2024-10-22T18:17:53.762Z"
-        />{" "}
+        <Link to="createReview">
+          {" "}
+          <img
+            className="home-img"
+            src="https://imagedelivery.net/ZMsc4Rh1AHFp0qz_tfBn9w/png_13--uTk3hwTDvKbv-9uem/public?id=2024-10-22T18:17:53.762Z"
+          />
+        </Link>{" "}
         <br />
         <p>
           We have {reviews.length} reviews.

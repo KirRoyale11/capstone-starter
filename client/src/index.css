@@ -76,8 +76,14 @@ a:visited {
   max-width: 50%;
 }
 
+.business-reviews-container {
+  display: grid;
+  /* grid-template-columns: 50% 50%; */
+}
+
 .business-reviews-by-user {
   border: solid;
+  margin: 5px;
 }
 
 .main-user-layout {
@@ -89,6 +95,8 @@ a:visited {
 .review-container {
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .review-list {

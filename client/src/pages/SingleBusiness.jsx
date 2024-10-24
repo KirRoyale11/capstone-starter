@@ -113,7 +113,7 @@ function SingleBusiness() {
       <h2 className="reviews">Reviews:</h2>
       {reviews?.map(function (review) {
         return (
-          <div>
+          <div className="business-reviews-container">
             <div className="business-reviews-by-user" key={review.id}>
               {/* <Link to="/reviews/user/:id"> */}
               <h3>User: {review.username} </h3>

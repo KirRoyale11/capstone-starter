@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Rating } from "@mui/material";
 
 export default function UserReviews({ auth }) {
-  const { id: userId } = useParams();
+  const { id: userId, username } = useParams();
   const [userReviewData, setUserReviewData] = useState(null);
   const navigate = useNavigate();
 
@@ -29,9 +30,11 @@ export default function UserReviews({ auth }) {
         .catch((err) => console.log("error deleting review", err));
     }
   }
+  // const result = users.find(({ id }) => id === userId);
+
   return (
     <div>
-      <h1>Hello!</h1>
+      <h2>All Reviews by User</h2>
       <div className="user-review-layout">
         {userReviewData?.map(function (data) {
           return (
@@ -42,7 +45,7 @@ export default function UserReviews({ auth }) {
               <br></br>
               Review: {data.input}
               <br></br>
-              Rating: {data.stars}
+              Rating: <Rating name="read-only" value={data.stars} readOnly />
               <br></br>
               This Review by DoubleCheck user: {data.username}
               <br></br>
