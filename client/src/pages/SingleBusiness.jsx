@@ -64,6 +64,7 @@
 
 import { useEffect, useState } from "react";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import Rating from "@mui/material/Rating";
 
 function SingleBusiness() {
   const [business, setBusiness] = useState({});
@@ -117,8 +118,11 @@ function SingleBusiness() {
               {/* <Link to="/reviews/user/:id"> */}
               <h3>User: {review.username} </h3>
               {/* </Link> */}
-              <h3 className="rating">Rating:</h3>
-              <p> {review.stars}</p>
+              <h3 className="rating">
+                Rating:
+                <Rating name="read-only" value={review.stars} readOnly />
+              </h3>
+              <p> </p>
               <p>{review.input}</p>
             </div>
           </div>
